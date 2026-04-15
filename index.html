@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<title>Кешірім</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ffb6c1, #ffc0cb);
+    font-family: Arial;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yes {
+    background: green;
+    color: white;
+}
+
+#no {
+    background: red;
+    color: white;
+    position: absolute;
+}
+
+#message {
+    font-size: 28px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+    <h1 id="title">Нурай мені кешірші</h1>
+    <p id="text">Кешіресің ба?</p>
+    <button id="yes">Ия</button>
+    <button id="no">Жоқ</button>
+</div>
+
+<div id="message"></div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+// Жоқ кнопкасы қашады
+document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+
+    const distance = Math.hypot(
+        e.clientX - (rect.left + rect.width / 2),
+        e.clientY - (rect.top + rect.height / 2)
+    );
+
+    if (distance < 100) {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+// Ия басқанда бәрі жоғалады
+yesBtn.addEventListener("click", () => {
+    document.getElementById("box").style.display = "none";
+    document.getElementById("message").innerHTML = "Рахмет жаным ❤️";
+});
+</script>
+
+</body>
+</html>
+
+
